@@ -24,9 +24,6 @@ python -m venv venv
 source venv/bin/activate # On Windows: venv\Scripts\activate
 uvicorn main:app --reload # Starts the FastAPI server on port 8000
 ### Frontend Setup (React)
-Page 1
-README.md - Data Analyzer AI
-cd frontend
 npm install
 npm run dev # Starts the React app (default port: 5000)
 
