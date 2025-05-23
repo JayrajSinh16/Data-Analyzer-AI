@@ -8,13 +8,13 @@ const models = [
     description: 'Fast reasoning capabilities',
   },
   {
-    id: 'microsoft/phi-4-reasoning-plus:free',
-    name: 'Phi-4',
-    provider: 'Microsoft',
+    id: 'nvidia/llama-3.3-nemotron-super-49b-v1:free',
+    name: 'Llama-3.3',
+    provider: 'Nvidia',
     description: 'Quick responses with good quality',
   },
   {
-    id: 'qwen/qwen3-0.6b-04-28:free',
+    id: 'qwen/qwen3-30b-a3b:free',
     name: 'Qwen3-0',
     provider: 'Qwen',
     description: 'Fast and cost-effective',

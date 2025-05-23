@@ -56,9 +56,9 @@ const NoChartData = () => (
 );
 
 const renderChart = (visualization) => {
-  const { chart_type, title, data, x_axis, y_axis, colors } = visualization;
+  const { chart_type, title, data, x_axis, y_axis } = visualization;
 
-  const chartColors = colors || generateChartColors(data.length, "#8b5cf6");
+  const chartColors =  generateChartColors(data.length, "#8b5cf6");
 
   if (!data || data.length === 0) {
     return <NoChartData />;

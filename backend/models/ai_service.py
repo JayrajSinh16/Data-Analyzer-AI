@@ -1,7 +1,7 @@
 """
 AI Service for interacting with the OpenRouter API.
 """
-import os
+
 import json
 import time
 import requests
@@ -21,13 +21,13 @@ class AIService:
         
         
         # Model mappings - OpenRouter model IDs
-        self.api_key = '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'
+        self.api_key = 'now-you-see-me; now-you-don\'t'
         self.api_base = "https://openrouter.ai/api/v1"
 
         self.models = {
-            "microsoft/phi-4-reasoning-plus:free": "microsoft/phi-4-reasoning-plus:free",
+            "nvidia/llama-3.3-nemotron-super-49b-v1:free": "nvidia/llama-3.3-nemotron-super-49b-v1:free",
             "meta-llama/llama-3.3-8b-instruct:free": "meta-llama/llama-3.3-8b-instruct:free",
-            "qwen/qwen3-0.6b-04-28:free": "qwen/qwen3-0.6b-04-28:free",
+            "qwen/qwen3-30b-a3b:free": "qwen/qwen3-30b-a3b:free",
         }
     
     def get_response(
@@ -75,7 +75,7 @@ class AIService:
             },
             {
                 "role": "user", 
-                "content": f"Here's information about my data:\n\n{data_description}\n\nAnswer in short & consise way such as it will easy for user to understand.\n\nMy question is: {question}"
+                "content": f"Here's information about my data:\n\n{data_description}\n\nAnswer in short & consise way such as it will easy for user to understand.\n\n Answer in sinple text format, not need to do any kind of formating for web or app view.\n\nMy question is: {question}"
             }
         ]
         
@@ -213,7 +213,7 @@ class AIService:
         }
         
         response = requests.post(
-            f"{self.api_base}/chat/completions"
+            f"{self.api_base}/chat/completions",
             headers=headers,
             data=json.dumps(payload)
         )

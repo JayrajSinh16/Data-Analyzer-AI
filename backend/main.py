@@ -1,10 +1,8 @@
 """
 Main FastAPI application for the Data Analysis Platform.
 """
-import os
-from typing import Dict, List, Optional, Union, Any
+from typing import Dict, Optional, Any
 from fastapi import FastAPI, File, UploadFile, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
  
@@ -19,14 +17,6 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Add CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with specific origin
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Global data store - in a production app, this would use a database
 current_data = None
@@ -41,9 +31,9 @@ class AIRequest(BaseModel):
     model: str
     context: Optional[Dict[str, Any]] = None
 
-class CorrelationRequest(BaseModel):
-    column1: str
-    column2: str
+# class CorrelationRequest(BaseModel):
+#     column1: str
+#     column2: str
 
 # Response models
 class AIResponse(BaseModel):
@@ -60,7 +50,7 @@ async def root():
 
 
 # Endpoint to upload a file and perform initial analysis
-@app.post("/api/upload")
+@app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     """
     Upload and process a data file (CSV or Excel).
@@ -117,7 +107,7 @@ async def upload_file(file: UploadFile = File(...)):
 
 
 # Endpoint to ask AI a question about the uploaded data
-@app.post("/api/ask-ai", response_model=AIResponse)
+@app.post("/ask-ai", response_model=AIResponse)
 async def ask_ai(request: AIRequest):
     """
     Ask a question about the data and get an AI-powered response.
@@ -147,79 +137,6 @@ async def ask_ai(request: AIRequest):
             detail=f"Error getting AI response: {str(e)}"
         )
 
-
-# Endpoint to get statistics for a specific column
-@app.get("/column-stats/{column_name}")
-async def get_column_stats(column_name: str):
-    """
-    Get detailed statistics for a specific column.
-    """
-    global current_analyzer
-
-    if current_analyzer is None:
-        raise HTTPException(
-            status_code=400,
-            detail="No data available. Please upload a file first."
-        )
-
-    # Ensure the requested column exists
-    if column_name not in current_analyzer.data.columns:
-        raise HTTPException(
-            status_code=404,
-            detail=f"Column '{column_name}' not found in the data."
-        )
-
-    try:
-        # Get descriptive statistics for the column
-        stats = current_analyzer.get_column_stats(column_name)
-        return stats
-
-    except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error calculating column statistics: {str(e)}"
-        )
-
-
-# Endpoint to calculate correlation between two selected columns
-@app.post("/correlation")
-async def get_correlation(request: CorrelationRequest):
-    """
-    Calculate correlation between two columns.
-    """
-    global current_analyzer
-
-    if current_analyzer is None:
-        raise HTTPException(
-            status_code=400,
-            detail="No data available. Please upload a file first."
-        )
-
-    # Validate if both columns exist
-    if request.column1 not in current_analyzer.data.columns:
-        raise HTTPException(
-            status_code=404,
-            detail=f"Column '{request.column1}' not found in the data."
-        )
-
-    if request.column2 not in current_analyzer.data.columns:
-        raise HTTPException(
-            status_code=404,
-            detail=f"Column '{request.column2}' not found in the data."
-        )
-
-    try:
-        # Compute correlation value (e.g., Pearson/Spearman)
-        correlation = current_analyzer.calculate_correlation(
-            request.column1, request.column2
-        )
-        return correlation
-
-    except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error calculating correlation: {str(e)}"
-        )
 
 if __name__ == "__main__":
     # Run the FastAPI application with uvicorn
