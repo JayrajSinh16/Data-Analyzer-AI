@@ -2,7 +2,6 @@
 
 <div align="center">
 
-![Data Analyzer AI Banner](https://via.placeholder.com/800x200/7c3aed/ffffff?text=Data+Analyzer+AI)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -588,7 +587,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2025 Jayraj Zala
+Copyright (c) 2025 Jayraj Sinh Zala
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -607,10 +606,10 @@ copies or substantial portions of the Software.
 
 <div align="center">
 
-**Made with ❤️ by [Jayraj Zala](https://github.com/JayrajSinh16)**
+**Made with ❤️ by [Jayraj Sinh Zala](https://github.com/JayrajSinh16)**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JayrajSinh16)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/jayrajsinh-zala)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/jayrajsz)
 
 </div>
 
